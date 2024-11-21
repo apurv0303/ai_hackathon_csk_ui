@@ -283,7 +283,8 @@ elif page == "Documentation":
 
     # Additional Insights section
     st.header("Future Scope ")
-    st.subheader('Heterogeneous graph neural network (HeteroGNN)')
+    # st.subheader('Heterogeneous graph neural network (HeteroGNN)')
+    st.markdown('<h1 class="title-text">Heterogeneous graph neural network (HeteroGNN)</h1>', unsafe_allow_html=True)
     # Detailed insights about the model
     st.markdown(
         """
