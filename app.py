@@ -284,7 +284,26 @@ elif page == "Documentation":
     # Additional Insights section
     st.header("Future Scope ")
     st.subheader('Heterogeneous graph neural network (HeteroGNN)')
-    st.markdown("""
+    # Detailed insights about the model
+    st.markdown(
+        """
+        <style>
+            .content-text {
+                font-size: 16px;
+                line-height: 1.6;
+                color: #f0f0f0;
+            }
+            .section-title {
+                font-weight: bold;
+                font-size: 18px;
+                color: #80C7E2;
+            }
+        </style>
+        """, unsafe_allow_html=True
+    )
+
+    st.markdown(
+        """
         <p class="content-text">Explore detailed insights about the potential advancements with HeteroGNN:</p>
         <ul>
             <li><span class="section-title">Key Model Components and Architecture:</span></li>
@@ -311,7 +330,8 @@ elif page == "Documentation":
                 - Metrics showcasing performance improvement over baseline models.
             </p>
         </ul>
-        """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True
+    )
     # Add images and text
     image1 = Image.open("gnn_fw_2.png")
     st.image(image1, caption="Model Architecture", use_column_width=True)
