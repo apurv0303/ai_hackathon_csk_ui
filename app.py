@@ -145,9 +145,9 @@ if page == "Model Predictions":
             # Check if the selected column exists in the uploaded CSV
             predictions = predict(data['input_text'], model)
             data['Prediction'] = predictions
-            st.write("Prediction Results:")
-            st.write(data)
-
+            st.write("Prediction Results csv looks like, click below to download complete csv:")
+            st.write(data.head(2))
+            st.write(f"Model Accuracy is : {accuracy:.2f}%")
             # Option to download the output CSV with predictions
             csv = data.to_csv(index=False)
             st.download_button(
@@ -158,16 +158,8 @@ if page == "Model Predictions":
                 key="download-btn",
                 help="Click to download the CSV file with predictions"
             )
-            accuracy=98
-            st.write(f"Model Accuracy: {accuracy}%")
-            # Show Accuracy button
-            accuracy=98
-            if st.button("Show Accuracy", key="show-accuracy"):
-                st.write(f"Model Accuracy: {accuracy:.2f}%")
+
                 
-                # # Add a button next to the accuracy to show the value
-                # accuracy_button_label = f"Accuracy: {accuracy:.2f}%"
-                # st.button(accuracy_button_label, key="accuracy-btn")
  
 
 elif page == "Documentation":
