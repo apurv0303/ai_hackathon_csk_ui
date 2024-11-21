@@ -285,6 +285,78 @@ elif page == "Documentation":
     plt.grid(True, which='both', linestyle='--', linewidth=0.5)
     st.pyplot(plt)
 
+    # New Section: Deployment and Scaling
+    st.header("Deployment and Scaling")
+
+    st.markdown("""
+        <style>
+            .content-text {
+                font-size: 16px;
+                line-height: 1.6;
+                color: #f0f0f0;
+            }
+            .section-title {
+                font-weight: bold;
+                font-size: 18px;
+                color: #80C7E2;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+        <p class="content-text">
+            In Kubernetes, managing container resources effectively ensures optimal performance and prevents resource overutilization. Below are the key configurations:
+        </p>
+        <ul>
+            <li><span class="section-title">Requests:</span> Define the minimum guaranteed resources the container needs.</li>
+            <li><span class="section-title">Limits:</span> Define the maximum resources the container can consume.</li>
+        </ul>
+        <p class="content-text">
+            In this case:
+        </p>
+        <ul>
+            <li><span class="section-title">CPU:</span> Minimum 500m (50% of a core), Maximum 1 (100% of a core).</li>
+            <li><span class="section-title">Memory:</span> Minimum 2Gi, Maximum 4Gi.</li>
+        </ul>
+        <p class="content-text">
+            Proper configuration helps in maintaining service availability and scaling efficiently under load.
+        </p>
+
+        <p class="content-text">
+            <span class="section-title">Flowchart:</span> Illustrates the deployment process from model development to scaling.
+        </p>
+    """, unsafe_allow_html=True)
+
+    # Display Flowchart
+    st.subheader("Deployment Flowchart")
+    flowchart_path = "deployment_fw_01.png"  # Update with the actual path to your flowchart
+    st.image(flowchart_path, caption="Flowchart: Resource Allocation in Kubernetes", use_column_width=True)
+
+    # Dockerfile and Kubernetes Deployment YAML Details
+    st.markdown("""
+        <p class="content-text">
+            <span class="section-title">Dockerfile:</span> 
+            The Dockerfile configures the environment for model serving:
+        </p>
+        <ul>
+            <li>Uses Python 3.9 slim image</li>
+            <li>Installs necessary dependencies</li>
+            <li>Exposes port 8080</li>
+            <li>Sets up environment for model serving</li>
+        </ul>
+
+        <p class="content-text">
+            <span class="section-title">Kubernetes Deployment YAML:</span> 
+            The Kubernetes configuration ensures scalability and availability:
+        </p>
+        <ul>
+            <li>3 replica deployment</li>
+            <li>Resource requests and limits</li>
+            <li>Persistent volume claim for model storage</li>
+            <li>LoadBalancer service type</li>
+        </ul>
+    """, unsafe_allow_html=True)
+
     # Additional Insights section
     st.header("Future Scope ")
     # st.subheader('Heterogeneous graph neural network (HeteroGNN)')
