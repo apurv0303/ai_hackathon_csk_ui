@@ -298,7 +298,7 @@ elif page == "Documentation":
         </ul>
         """, unsafe_allow_html=True)
     # Add images and text
-    st.write("## Model Architecture Visualization")
+    st.subheader("## Model Architecture Visualization")
     image1 = Image.open("gnn_fw_2.png")
     st.image(image1, caption="Model Architecture", use_column_width=True)
     image2 = Image.open("gnn_fw_1.png")
