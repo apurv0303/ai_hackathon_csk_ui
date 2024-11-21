@@ -321,14 +321,9 @@ elif page == "Documentation":
         <p class="content-text">
             Proper configuration helps in maintaining service availability and scaling efficiently under load.
         </p>
-
-        <p class="content-text">
-            <span class="section-title">Flowchart:</span> Illustrates the deployment process from model development to scaling.
-        </p>
     """, unsafe_allow_html=True)
 
     # Display Flowchart
-    st.subheader("Deployment Flowchart")
     flowchart_path = "deployment_fw_01.png"  # Update with the actual path to your flowchart
     st.image(flowchart_path, caption="Flowchart: Resource Allocation in Kubernetes", use_column_width=True)
 
