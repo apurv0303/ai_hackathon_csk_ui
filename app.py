@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-from loguru import logge
+from loguru import logger
 from validate_csv import validate_input_csv
 
 
