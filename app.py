@@ -285,20 +285,34 @@ elif page == "Documentation":
     st.header("Future Scope ")
     st.subheader('Heterogeneous graph neural network (HeteroGNN)')
     st.markdown("""
-        <p class="content-text">Explore detailed insights about the model below:</p>
+        <p class="content-text">Explore detailed insights about the potential advancements with HeteroGNN:</p>
         <ul>
-            <li><span class="section-title">Key model components and architecture:</span></li>
-            <p class="content-text">Our model uses state-of-the-art deep learning techniques, including attention mechanisms for improved context understanding.</p>
+            <li><span class="section-title">Key Model Components and Architecture:</span></li>
+            <p class="content-text">
+                Heterogeneous Graph Neural Networks leverage diverse node and edge types to learn complex interactions 
+                within multi-relational graphs. By incorporating attention mechanisms and relation-specific transformations, 
+                these models achieve improved representation learning for tasks like fraud detection, recommendation systems, 
+                and knowledge graph completion.
+            </p>
             
-            <li><span class="section-title">Examples of inputs and outputs:</span></li>
-            <p class="content-text">The table below showcases how our model processes text data and generates predictions.</p>
+            <li><span class="section-title">Examples of Inputs and Outputs:</span></li>
+            <p class="content-text">
+                - **Input**: A graph with heterogeneous nodes (e.g., users, items, and transactions) and edges (e.g., purchases, 
+                reviews, and clicks).<br>
+                - **Output**: Node embeddings capturing multi-type relationships or predictions for specific tasks such as 
+                node classification or link prediction.
+            </p>
             
-            <li><span class="section-title">Advanced visualizations:</span></li>
-            <p class="content-text">Below are sample outputs of our model performance, including a confusion matrix and feature importance plot.</p>
+            <li><span class="section-title">Advanced Visualizations:</span></li>
+            <p class="content-text">
+                Below are potential visualizations illustrating how the model processes graphs:<br>
+                - Node embedding distributions<br>
+                - Attention weights for relation-specific edges<br>
+                - Metrics showcasing performance improvement over baseline models.
+            </p>
         </ul>
         """, unsafe_allow_html=True)
     # Add images and text
-    st.subheader("## Model Architecture Visualization")
     image1 = Image.open("gnn_fw_2.png")
     st.image(image1, caption="Model Architecture", use_column_width=True)
     image2 = Image.open("gnn_fw_1.png")
