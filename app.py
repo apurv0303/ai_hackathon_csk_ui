@@ -307,12 +307,10 @@ elif page == "Documentation":
 
     st.markdown("""
         <p class="content-text">
-            In Kubernetes, managing container resources effectively ensures optimal performance and prevents resource overutilization. Below are the key configurations:
+        For deploying the BERT-based text classifier, we will use a Dockerized container orchestrated with Kubernetes, ensuring efficient management and scaling of the application. The deployment will run on multiple pods for high availability and reliability.
+        For scaling, we primarily control the deployment using resource requests, limits, and replicas, allowing us to balance performance and cost effectively.
+        In Kubernetes, managing container resources effectively ensures optimal performance and prevents resource overutilization. Below are the key configurations:
         </p>
-        <ul>
-            <li><span class="section-title">Requests:</span> Define the minimum guaranteed resources the container needs.</li>
-            <li><span class="section-title">Limits:</span> Define the maximum resources the container can consume.</li>
-        </ul>
         <p class="content-text">
             In this case:
         </p>
@@ -521,9 +519,11 @@ elif page == "About CloudSEK":
     # About Team Section
     st.header("About Our Team")
     st.markdown("""
-    - **Lasya**: [LinkedIn Profile](https://www.linkedin.com)
-    - **Lasya**: [LinkedIn Profile](https://www.linkedin.com)
-    - **Lasya**: [LinkedIn Profile](https://www.linkedin.com)
-    - **Lasya**: [LinkedIn Profile](https://www.linkedin.com)
-    - **Lasya**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Lasya Ippagunta**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Apurv Singh**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Shubham Luharuka**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Sravanti P**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Puneet Hedge**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Faizah Feroz**: [LinkedIn Profile](https://www.linkedin.com)
+    - **HS Manoj**: [LinkedIn Profile](https://www.linkedin.com)
     """, unsafe_allow_html=True)
