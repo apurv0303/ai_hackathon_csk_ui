@@ -283,16 +283,7 @@ elif page == "Documentation":
 
     # Additional Insights section
     st.header("Future Scope ")
-    st.subheader('Additional Architecure We have Tried')
-    # st.markdown("""
-    # <p class="content-text">Here you can add:</p>
-    # <ul>
-    #     <li><span class="section-title">Detailed explanations of model components.</span></li>
-    #     <li><span class="section-title">Examples of inputs and outputs.</span></li>
-    #     <li><span class="section-title">Advanced visualizations, such as confusion matrices, feature importance plots, or clustering results.</span></li>
-    # </ul>
-    # """, unsafe_allow_html=True)
-    # Updated content with images and text
+    st.subheader('Heterogeneous graph neural network (HeteroGNN)')
     st.markdown("""
         <p class="content-text">Explore detailed insights about the model below:</p>
         <ul>
@@ -307,18 +298,16 @@ elif page == "Documentation":
         </ul>
         """, unsafe_allow_html=True)
     # Add images and text
-    st.write("### Model Architecture Visualization")
-    image1 = Image.open("gnn_fw_1.png")
-    st.image(image1, caption="Model Architecture", use_column_width=True)
-
-    st.write("### Model Output Example: Confusion Matrix")
+    st.write("## Model Architecture Visualization")
     image2 = Image.open("gnn_fw_2.png")
-    st.image(image2, caption="Confusion Matrix of Predictions", use_column_width=True)
+    st.image(image1, caption="Model Architecture", use_column_width=True)
+    image1 = Image.open("gnn_fw_1.png")
+    st.image(image2, caption="Model inference", use_column_width=True)
 
-    st.markdown("""
-        <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
-        <p class="content-text">For more details, refer to the documentation or reach out to our team.</p>
-        """, unsafe_allow_html=True)
+    # st.markdown("""
+    #     <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
+    #     <p class="content-text">For more details, refer to the documentation or reach out to our team.</p>
+    #     """, unsafe_allow_html=True)
 
 elif page == "CloudSEK":
     st.markdown(
