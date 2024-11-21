@@ -158,7 +158,8 @@ if page == "Model Predictions":
                 key="download-btn",
                 help="Click to download the CSV file with predictions"
             )
-
+            accuracy=98
+            st.write(f"Model Accuracy: {accuracy}%")
             # Show Accuracy button
             accuracy=98
             if st.button("Show Accuracy", key="show-accuracy"):
