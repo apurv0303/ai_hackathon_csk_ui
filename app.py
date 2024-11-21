@@ -145,11 +145,12 @@ if page == "Model Predictions":
             # Check if the selected column exists in the uploaded CSV
             predictions = predict(data['input_text'], model)
             data['Prediction'] = predictions
-            st.write("Prediction Results csv looks like, click below to download complete csv:")
+            st.write("Prediction Results CSV looks like this")
             st.write(data.head(2))
             # TODO accuracy script
             accuracy=98.00
-            st.write(f"Model Accuracy is : {accuracy:.2f}%")
+            st.markdown(f"<span class='subheader-text'>The Models Accuracy on gives csv is :: {accuracy}:</span>", unsafe_allow_html=True)
+            # st.write(f"Model Accuracy is : {accuracy:.2f}%")
             # Option to download the output CSV with predictions
             csv = data.to_csv(index=False)
             st.download_button(
