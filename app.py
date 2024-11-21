@@ -302,32 +302,108 @@ elif page == "Documentation":
         """, unsafe_allow_html=True
     )
 
+st.markdown(
+    """
+    <style>
+        .content-text {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #f0f0f0;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 18px;
+            color: #80C7E2;
+        }
+        .list-item {
+            margin-bottom: 10px;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)
+
     st.markdown(
         """
         <p class="content-text">Explore detailed insights about the potential advancements with HeteroGNN:</p>
-        <ul>
-            <li><span class="section-title">Key Model Components and Architecture:</span></li>
-            <p class="content-text">
-                Heterogeneous Graph Neural Networks leverage diverse node and edge types to learn complex interactions 
-                within multi-relational graphs. By incorporating attention mechanisms and relation-specific transformations, 
-                these models achieve improved representation learning for tasks like fraud detection, recommendation systems, 
-                and knowledge graph completion.
-            </p>
-            <li><span class="section-title">Examples of Inputs and Outputs:</span></li>
-            <p class="content-text">
-                - **Input**: A graph with heterogeneous nodes (e.g., users, items, and transactions) and edges (e.g., purchases, 
-                reviews, and clicks).<br>
-                - **Output**: Node embeddings capturing multi-type relationships or predictions for specific tasks such as 
-                node classification or link prediction.
-            </p>
-            <li><span class="section-title">Advanced Visualizations:</span></li>
-            <p class="content-text">
-                Below are potential visualizations illustrating how the model processes graphs:<br>
-                - Node embedding distributions<br>
-                - Attention weights for relation-specific edges<br>
-                - Metrics showcasing performance improvement over baseline models.
-            </p>
-        </ul>
+        <ol>
+            <li class="list-item">
+                <span class="section-title">Key Model Components and Architecture:</span>
+                <p class="content-text">
+                    A heterogeneous graph is a graph with multiple types of nodes and edges. In our text classification context:
+                </p>
+                <ul>
+                    <li><strong>Node Types:</strong></li>
+                    <ul>
+                        <li>1. <strong>Document Nodes:</strong> Represent individual text documents</li>
+                        <li>2. <strong>Label Nodes:</strong> Represent unique category labels</li>
+                    </ul>
+                    <li><strong>Edge Types:</strong></li>
+                    <ul>
+                        <li>
+                            1. <strong>Document-Document Edges:</strong><br>
+                            - Created based on document text similarity<br>
+                            - Connects semantically similar documents<br>
+                            - Helps capture contextual relationships
+                        </li>
+                        <li>
+                            2. <strong>Document-Label Edges:</strong><br>
+                            - Connects documents to their ground truth labels<br>
+                            - Guides the learning process during training
+                        </li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="list-item">
+                <span class="section-title">Examples of Inputs and Outputs:</span>
+                <p class="content-text">
+                    <strong>A. Text Embedding:</strong><br>
+                    - Uses SentenceTransformer ('all-MiniLM-L6-v2')<br>
+                    - Converts raw text into dense vector representations<br>
+                    - Captures semantic meaning in a fixed-length vector<br>
+                    - Enables meaningful similarity comparisons
+                </p>
+                <p class="content-text">
+                    <strong>B. Graph Construction:</strong>
+                </p>
+                <ul>
+                    <li>
+                        <strong>Document Node Features:</strong><br>
+                        - Embedding vectors from sentence transformer<br>
+                        - Captures semantic content of each document
+                    </li>
+                    <li>
+                        <strong>Label Node Features:</strong><br>
+                        - One-hot encoded vectors<br>
+                        - Represents unique category information
+                    </li>
+                    <li>
+                        <strong>Edge Creation:</strong>
+                        <ul>
+                            <li>
+                                <strong>Document-Document Edges:</strong><br>
+                                - Uses cosine similarity<br>
+                                - Connects top-k most similar documents<br>
+                                - Helps propagate information between related texts
+                            </li>
+                            <li>
+                                <strong>Document-Label Edges:</strong><br>
+                                - Connects documents to their ground truth labels<br>
+                                - Provides supervised learning signal
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="list-item">
+                <span class="section-title">Advanced Visualizations:</span>
+                <p class="content-text">
+                    Below are potential visualizations illustrating how the model processes graphs:<br>
+                    - Node embedding distributions<br>
+                    - Attention weights for relation-specific edges<br>
+                    - Metrics showcasing performance improvement over baseline models.
+                </p>
+            </li>
+        </ol>
         """, unsafe_allow_html=True
     )
     # Add images and text
