@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from loguru import logger
-from UI_scripts.validate_csv import validate_input_csv
+from validate_csv import validate_input_csv
 
 # Load your model (replace with your model loading code)
 def load_model():
