@@ -302,25 +302,25 @@ elif page == "Documentation":
         """, unsafe_allow_html=True
     )
 
-st.markdown(
-    """
-    <style>
-        .content-text {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #f0f0f0;
-        }
-        .section-title {
-            font-weight: bold;
-            font-size: 18px;
-            color: #80C7E2;
-        }
-        .list-item {
-            margin-bottom: 10px;
-        }
-    </style>
-    """, unsafe_allow_html=True
-)
+    st.markdown(
+        """
+        <style>
+            .content-text {
+                font-size: 16px;
+                line-height: 1.6;
+                color: #f0f0f0;
+            }
+            .section-title {
+                font-weight: bold;
+                font-size: 18px;
+                color: #80C7E2;
+            }
+            .list-item {
+                margin-bottom: 10px;
+            }
+        </style>
+        """, unsafe_allow_html=True
+    )
 
     st.markdown(
         """
