@@ -313,7 +313,6 @@ elif page == "Documentation":
                 these models achieve improved representation learning for tasks like fraud detection, recommendation systems, 
                 and knowledge graph completion.
             </p>
-            
             <li><span class="section-title">Examples of Inputs and Outputs:</span></li>
             <p class="content-text">
                 - **Input**: A graph with heterogeneous nodes (e.g., users, items, and transactions) and edges (e.g., purchases, 
@@ -321,7 +320,6 @@ elif page == "Documentation":
                 - **Output**: Node embeddings capturing multi-type relationships or predictions for specific tasks such as 
                 node classification or link prediction.
             </p>
-            
             <li><span class="section-title">Advanced Visualizations:</span></li>
             <p class="content-text">
                 Below are potential visualizations illustrating how the model processes graphs:<br>
