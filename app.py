@@ -164,9 +164,9 @@ if page == "Model Predictions":
             if st.button("Show Accuracy", key="show-accuracy"):
                 st.write(f"Model Accuracy: {accuracy:.2f}%")
                 
-                # Add a button next to the accuracy to show the value
-                accuracy_button_label = f"Accuracy: {accuracy:.2f}%"
-                st.button(accuracy_button_label, key="accuracy-btn")
+                # # Add a button next to the accuracy to show the value
+                # accuracy_button_label = f"Accuracy: {accuracy:.2f}%"
+                # st.button(accuracy_button_label, key="accuracy-btn")
  
 
 elif page == "Documentation":
