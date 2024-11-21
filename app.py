@@ -298,30 +298,12 @@ elif page == "Documentation":
                 font-size: 18px;
                 color: #80C7E2;
             }
-        </style>
-        """, unsafe_allow_html=True
-    )
-
-    st.markdown(
-        """
-        <style>
-            .content-text {
-                font-size: 16px;
-                line-height: 1.6;
-                color: #f0f0f0;
-            }
-            .section-title {
-                font-weight: bold;
-                font-size: 18px;
-                color: #80C7E2;
-            }
             .list-item {
                 margin-bottom: 10px;
             }
         </style>
         """, unsafe_allow_html=True
     )
-
     st.markdown(
         """
         <p class="content-text">Explore detailed insights about the potential advancements with HeteroGNN:</p>
@@ -400,7 +382,6 @@ elif page == "Documentation":
                     Below are potential visualizations illustrating how the model processes graphs:<br>
                     - Node embedding distributions<br>
                     - Attention weights for relation-specific edges<br>
-                    - Metrics showcasing performance improvement over baseline models.
                 </p>
             </li>
         </ol>
