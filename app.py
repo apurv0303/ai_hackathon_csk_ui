@@ -4,7 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 from loguru import logger
-from validate_csv import validate_input_csv
+from ui_scripts.validate_csv import validate_input_csv
+from ui_scripts.accuracy import accuracy_check
 
 
 # Configure Loguru logger
@@ -30,7 +31,7 @@ model = load_model()
 
 # Sidebar for page navigation
 st.sidebar.title("Jump to Section")
-page = st.sidebar.radio("Go to", ["Model Predictions", "Documentation","CloudSEK"])
+page = st.sidebar.radio("Go to", ["Model Predictions", "Documentation","About CloudSEK"])
 
 if page == "Model Predictions":
     st.markdown(
@@ -136,7 +137,7 @@ if page == "Model Predictions":
         st.write(data.head(3))
 
         # Dropdown to show the required columns for CSV
-        required_columns = ['id','input_text']  # List required columns
+        required_columns = ['id','input_text','ground_truth [Optional for accuracy]']  # List required columns
         st.subheader("Required Columns in CSV:")
         st.markdown(f"<span class='subheader-text'>The uploaded CSV should contain the following columns:</span>", unsafe_allow_html=True)
         st.write(required_columns)
@@ -155,10 +156,11 @@ if page == "Model Predictions":
             data['Prediction'] = predictions
             st.write("Prediction Results CSV looks like this")
             st.write(data.head(2))
-            # TODO accuracy script
-            accuracy=98.00
-            # st.markdown(f"<span class='subheader-text'>The Models Accuracy on gives CSV is :: {accuracy}%:</span>", unsafe_allow_html=True)
-            st.write(f"Model Accuracy on given CSV is : {accuracy:.2f}%")
+
+            if 'ground_truth' in dataframe.columns:
+                logger.info('Ground truth provided')
+                accuracy=accuracy_check(predictions,list(dataframe['ground_truth']))
+                st.write(f"Model Accuracy on given CSV is : {accuracy}%")
             # Option to download the output CSV with predictions
             csv = data.to_csv(index=False)
             st.download_button(
@@ -258,7 +260,7 @@ elif page == "Documentation":
     """, unsafe_allow_html=True)
 
     # Model performance graphs
-    st.markdown('<h1 class="title-text">Model Performance Graphs</h1>', unsafe_allow_html=True)
+    # st.markdown('<h1 class="title-text">Model Performance Graphs</h1>', unsafe_allow_html=True)
     
     # Accuracy over epochs graph
     st.subheader("Accuracy Over Epochs")
@@ -324,7 +326,7 @@ elif page == "Documentation":
     """, unsafe_allow_html=True)
 
     # Display Flowchart
-    flowchart_path = "deployment_fw_01.png"  # Update with the actual path to your flowchart
+    flowchart_path = "ui_images/deployment_fw_01.png"  # Update with the actual path to your flowchart
     st.image(flowchart_path, caption="Flowchart: Resource Allocation in Kubernetes", use_column_width=True)
 
     # Dockerfile and Kubernetes Deployment YAML Details
@@ -460,9 +462,9 @@ elif page == "Documentation":
         """, unsafe_allow_html=True
     )
     # Add images and text
-    image1 = Image.open("gnn_fw_2.png")
+    image1 = Image.open("ui_images/gnn_fw_2.png")
     st.image(image1, caption="Model Architecture", use_column_width=True)
-    image2 = Image.open("gnn_fw_1.png")
+    image2 = Image.open("ui_images/gnn_fw_1.png")
     st.image(image2, caption="Model inference", use_column_width=True)
 
     st.markdown("""
