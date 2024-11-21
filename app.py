@@ -92,7 +92,8 @@ if page == "Model Predictions":
             background-color: #388E3C;
         }
         .title-text {
-            color: #FFFFFF; /* White color for the title */
+            color: #FFFFFF; /* White color for the title */,
+            font-size: 16px;
         }
         </style>
         """, unsafe_allow_html=True
