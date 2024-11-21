@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 from loguru import logger
 from validate_csv import validate_input_csv
 
@@ -149,8 +150,8 @@ if page == "Model Predictions":
             st.write(data.head(2))
             # TODO accuracy script
             accuracy=98.00
-            st.markdown(f"<span class='subheader-text'>The Models Accuracy on gives csv is :: {accuracy}:</span>", unsafe_allow_html=True)
-            # st.write(f"Model Accuracy is : {accuracy:.2f}%")
+            # st.markdown(f"<span class='subheader-text'>The Models Accuracy on gives CSV is :: {accuracy}%:</span>", unsafe_allow_html=True)
+            st.write(f"Model Accuracy on given CSV is : {accuracy:.2f}%")
             # Option to download the output CSV with predictions
             csv = data.to_csv(index=False)
             st.download_button(
@@ -281,15 +282,43 @@ elif page == "Documentation":
     st.pyplot(plt)
 
     # Additional Insights section
-    st.header("Additional Insights")
+    st.header("Future Scope ")
+    st.subheader('Additional Architecure We have Tried')
+    # st.markdown("""
+    # <p class="content-text">Here you can add:</p>
+    # <ul>
+    #     <li><span class="section-title">Detailed explanations of model components.</span></li>
+    #     <li><span class="section-title">Examples of inputs and outputs.</span></li>
+    #     <li><span class="section-title">Advanced visualizations, such as confusion matrices, feature importance plots, or clustering results.</span></li>
+    # </ul>
+    # """, unsafe_allow_html=True)
+    # Updated content with images and text
     st.markdown("""
-    <p class="content-text">Here you can add:</p>
-    <ul>
-        <li><span class="section-title">Detailed explanations of model components.</span></li>
-        <li><span class="section-title">Examples of inputs and outputs.</span></li>
-        <li><span class="section-title">Advanced visualizations, such as confusion matrices, feature importance plots, or clustering results.</span></li>
-    </ul>
-    """, unsafe_allow_html=True)
+        <p class="content-text">Explore detailed insights about the model below:</p>
+        <ul>
+            <li><span class="section-title">Key model components and architecture:</span></li>
+            <p class="content-text">Our model uses state-of-the-art deep learning techniques, including attention mechanisms for improved context understanding.</p>
+            
+            <li><span class="section-title">Examples of inputs and outputs:</span></li>
+            <p class="content-text">The table below showcases how our model processes text data and generates predictions.</p>
+            
+            <li><span class="section-title">Advanced visualizations:</span></li>
+            <p class="content-text">Below are sample outputs of our model performance, including a confusion matrix and feature importance plot.</p>
+        </ul>
+        """, unsafe_allow_html=True)
+    # Add images and text
+    st.write("### Model Architecture Visualization")
+    image1 = Image.open("gnn_fw_1.png")
+    st.image(image1, caption="Model Architecture", use_column_width=True)
+
+    st.write("### Model Output Example: Confusion Matrix")
+    image2 = Image.open("gnn_fw_2.png")
+    st.image(image2, caption="Confusion Matrix of Predictions", use_column_width=True)
+
+    st.markdown("""
+        <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
+        <p class="content-text">For more details, refer to the documentation or reach out to our team.</p>
+        """, unsafe_allow_html=True)
 
 elif page == "CloudSEK":
     st.markdown(
