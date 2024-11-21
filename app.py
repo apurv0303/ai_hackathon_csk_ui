@@ -299,9 +299,9 @@ elif page == "Documentation":
         """, unsafe_allow_html=True)
     # Add images and text
     st.write("## Model Architecture Visualization")
-    image2 = Image.open("gnn_fw_2.png")
+    image1 = Image.open("gnn_fw_2.png")
     st.image(image1, caption="Model Architecture", use_column_width=True)
-    image1 = Image.open("gnn_fw_1.png")
+    image2 = Image.open("gnn_fw_1.png")
     st.image(image2, caption="Model inference", use_column_width=True)
 
     # st.markdown("""
