@@ -3,8 +3,15 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
-from loguru import logger
+from loguru import logge
 from validate_csv import validate_input_csv
+
+
+# Configure Loguru logger
+logger.add("logs.txt", rotation="1 MB", retention="7 days", level="INFO")
+
+logger.info("Streamlit app started")
+
 
 # Load your model (replace with your model loading code)
 def load_model():
@@ -92,8 +99,7 @@ if page == "Model Predictions":
             background-color: #388E3C;
         }
         .title-text {
-            color: #FFFFFF; /* White color for the title */,
-            font-size: 16px;
+            color: #FFFFFF; /* White color for the title */
         }
         </style>
         """, unsafe_allow_html=True
@@ -163,9 +169,6 @@ if page == "Model Predictions":
                 key="download-btn",
                 help="Click to download the CSV file with predictions"
             )
-
-                
- 
 
 elif page == "Documentation":
     st.markdown(
@@ -395,12 +398,20 @@ elif page == "Documentation":
     image2 = Image.open("gnn_fw_1.png")
     st.image(image2, caption="Model inference", use_column_width=True)
 
-    # st.markdown("""
-    #     <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
-    #     <p class="content-text">For more details, refer to the documentation or reach out to our team.</p>
-    #     """, unsafe_allow_html=True)
+    st.markdown("""
+        <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
+        <p class="content-text">However, heterogeneous graph neural networks (HeteroGNNs) might not be the best fit for certain scenarios due to the following limitations:</p>
+        <ul>
+            <li><span class="section-title">Complexity in Graph Construction:</span> Building heterogeneous graphs requires defining multiple node and edge types, which can lead to significant preprocessing overhead.</li>
+            <li><span class="section-title">Scalability Challenges:</span> As the graph size increases, processing and training become computationally intensive, potentially exceeding resource limitations.</li>
+            <li><span class="section-title">Sparse Data Issues:</span> If the dataset lacks sufficient diversity or connectivity between different node types, the graph may fail to generalize well.</li>
+            <li><span class="section-title">Interpretability Concerns:</span> Understanding how different edge types and node interactions contribute to the final prediction can be challenging, making it harder to debug or explain the model.</li>
+        </ul>
+        <p class="content-text">Given these challenges, alternative approaches such as homogeneous graph networks or traditional machine learning techniques might be more practical and effective for our current requirements.</p>
+        <p class="content-text">For more details, refer to the documentation or reach out to our team.</p>
+    """, unsafe_allow_html=True)
 
-elif page == "CloudSEK":
+elif page == "About CloudSEK":
     st.markdown(
         """
         <style>
