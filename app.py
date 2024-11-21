@@ -125,7 +125,7 @@ if page == "Model Predictions":
         
         # Display the uploaded data
         st.write("Uploaded Data:")
-        st.write(data)
+        st.write(data.head(3))
 
         # Dropdown to show the required columns for CSV
         required_columns = ['id','input_text']  # List required columns
@@ -133,30 +133,32 @@ if page == "Model Predictions":
         st.markdown(f"<span class='subheader-text'>The uploaded CSV should contain the following columns:</span>", unsafe_allow_html=True)
         st.write(required_columns)
 
-        # Dropdown for users to select columns from the uploaded CSV
-        selected_column = st.selectbox("Select the input column from the uploaded CSV", options=data.columns.tolist())
-        st.write(f"Selected Column: {selected_column}")
+        # # Dropdown for users to select columns from the uploaded CSV
+        # selected_column = st.selectbox("Select the input column from the uploaded CSV", options=data.columns.tolist())
+        # st.write(f"Selected Column: {selected_column}")
+
+        # Dropdown to choose between models
+        selected_model = st.selectbox("Choose the model", ["Model 1", "Model 2"], key="model-selection")
+        
 
         if st.button("Process CSV", key="process-csv", help="Click to process the uploaded CSV for predictions"):
             # Check if the selected column exists in the uploaded CSV
-            if selected_column in data.columns:
-                predictions = predict(data[selected_column], model)
-                data['Prediction'] = predictions
-                st.write("Prediction Results:")
-                st.write(data)
+            predictions = predict(data['input_text'], model)
+            data['Prediction'] = predictions
+            st.write("Prediction Results:")
+            st.write(data)
 
-                # Option to download the output CSV with predictions
-                csv = data.to_csv(index=False)
-                st.download_button(
-                    label="Download Predictions",
-                    data=csv,
-                    file_name="predictions.csv",
-                    mime="text/csv",
-                    key="download-btn",
-                    help="Click to download the CSV file with predictions"
-                )
-            else:
-                st.error(f"Uploaded CSV must have a '{selected_column}' column.")
+            # Option to download the output CSV with predictions
+            csv = data.to_csv(index=False)
+            st.download_button(
+                label="Download Predictions",
+                data=csv,
+                file_name="predictions.csv",
+                mime="text/csv",
+                key="download-btn",
+                help="Click to download the CSV file with predictions"
+            )
+ 
 
 elif page == "Documentation":
     st.markdown(
@@ -312,8 +314,8 @@ elif page == "CloudSEK":
     # Apply the custom class to the main title
     st.markdown('<h1 class="title-text">CloudSEK</h1>', unsafe_allow_html=True)
     
-    # About the company
-    st.header("About CloudSEK")
+    # # About the company
+    # st.header("About CloudSEK")
     st.markdown("""
     At CloudSEK, we combine the power of Cyber Intelligence, Brand Monitoring, Attack Surface Monitoring, Infrastructure Monitoring, and Supply Chain Intelligence to provide a comprehensive view of digital risks. Our offerings include:
     - **Cyber Intelligence**: Utilizing advanced machine learning techniques to analyze vast amounts of data to uncover patterns and trends in cyber threats.
