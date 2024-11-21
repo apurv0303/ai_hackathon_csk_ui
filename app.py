@@ -158,11 +158,20 @@ if page == "Model Predictions":
                 key="download-btn",
                 help="Click to download the CSV file with predictions"
             )
-            
-           # Accuracy button to show accuracy
+
             if st.button("Show Accuracy"):
-                # st.write(f"Model Accuracy: {accuracy:.2f}%")
-                st.write(f"Model Accuracy: 98%")
+                accuracy=98
+                st.write(f"Model Accuracy: {accuracy:.2f}%")
+                
+                # Displaying an additional button with the accuracy value
+                accuracy_button_label = f"Accuracy: {accuracy:.2f}%"
+                st.download_button(
+                    label=accuracy_button_label,
+                    data=str(accuracy).encode(),
+                    file_name="accuracy.txt",
+                    mime="text/plain",
+                    key="accuracy-btn"
+                )
  
 
 elif page == "Documentation":
