@@ -265,58 +265,7 @@ elif page == "Documentation":
     st.subheader("Re-imagining the clusters")
     with open("ui_images/ai_hack_flowsvg_01.svg", "r") as svg_file:
         svg_content = svg_file.read()
-    # st.image(svg_content, use_column_width=True)
-    # Embed the SVG in an interactive HTML container
-    html_content = f"""
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Flowchart Viewer</title>
-        <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
-        <style>
-            body {{
-                margin: 0;
-                background-color: #121212;  /* Dark background */
-                color: #ffffff;  /* Light text color */
-            }}
-            #svg-container {{
-                width: 100%;
-                height: 600px;
-                overflow: hidden;
-                border: 1px solid #444; /* Subtle border for visibility */
-                position: relative;
-                background-color: #121212; /* Matches app's dark background */
-            }}
-            #svg-content {{
-                width: 100%;
-                height: 100%;
-                cursor: grab;
-            }}
-            svg {{
-                filter: invert(1) hue-rotate(180deg); /* Invert colors for better contrast */
-            }}
-        </style>
-    </head>
-    <body>
-        <div id="svg-container">
-            <div id="svg-content">{svg_content}</div>
-        </div>
-        <script>
-            const element = document.getElementById('svg-content');
-            const panzoomInstance = Panzoom(element, {{
-                contain: 'outside',
-                maxScale: 5,  // Set the max zoom level
-                minScale: 0.5 // Set the min zoom level
-            }});
-            element.parentElement.addEventListener('wheel', panzoomInstance.zoomWithWheel);
-        </script>
-    </body>
-    </html>
-    """
-    # Render the interactive viewer
-    st.components.v1.html(html_content, height=600, scrolling=False)
+    st.image(svg_content, use_column_width=True)
 
     # Accuracy over epochs graph
     st.subheader("Accuracy Over Epochs")
