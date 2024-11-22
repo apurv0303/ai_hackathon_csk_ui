@@ -259,7 +259,7 @@ elif page == "Documentation":
     </ul>
     """, unsafe_allow_html=True)
 
-    st.subheader("Main Categories Classifiers")
+    st.subheader("Categories Classifiers")
     with open("ui_images/ai_hack_flowsvg_02.svg", "r") as svg_file:
         svg_content = svg_file.read()
     st.image(svg_content, use_column_width=True)
