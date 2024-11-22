@@ -258,7 +258,6 @@ elif page == "Documentation":
             margin-bottom: 15px;
         }
         .section-title {
-            font-weight: bold;
             color: #4CAF50; /* Highlighted color for better visibility */
         }
         ul {
@@ -290,7 +289,6 @@ elif page == "Documentation":
                 <li><b>Category to Subcategory Mapping:</b> Maps each `category` to its `sub_category` values.</li>
             </ul>
         </li>
-
         <li><span class="section-title">Models:</span> A series of machine learning models tailored for different levels of classification granularity:
             <ul>
                 <li><b>Model 1:</b> Classifies data into one of three `main_category` values:
@@ -388,7 +386,6 @@ elif page == "Documentation":
                 </li>
             </ul>
         </li>
-
         <li><span class="section-title">Architecture:</span> The models use advanced architectures such as CNNs, RNNs, or Transformers, depending on the classification task.</li>
     </ul>
     """, unsafe_allow_html=True)
