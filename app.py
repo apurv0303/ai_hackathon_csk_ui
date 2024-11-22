@@ -250,12 +250,83 @@ elif page == "Documentation":
     # About the model section
     st.header("About the Model")
     st.markdown("""
+    <style>
+        .header-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-weight: bold;
+            color: #4CAF50; /* Highlighted color for better visibility */
+        }
+        ul {
+            color: white;
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
     <p class="header-text">This model is designed to solve a specific problem. It uses advanced machine learning techniques to process data and generate accurate predictions. Below are the key aspects of the model:</p>
     <ul>
-        <li><span class="section-title">Architecture:</span> Describe the architecture (e.g., CNN, RNN, Transformer).</li>
-        <li><span class="section-title">Input Format:</span> Specify the type and format of data the model takes.</li>
-        <li><span class="section-title">Output:</span> Detail the output predictions and how they are generated.</li>
-        <li><span class="section-title">Use Cases:</span> Mention real-world applications for the model.</li>
+        <li><span class="section-title">Input Format:</span> 
+            <ul>
+                <li>Data: <code>train.csv</code> with over 80,000 data points.</li>
+                <li><b>Main Categories:</b> High-level crime categories:
+                    <ul>
+                        <li>"Women/Child Related Crime"</li>
+                        <li>"Financial Fraud Crimes"</li>
+                        <li>"Other Cyber Crime"</li>
+                    </ul>
+                </li>
+                <li><b>Category:</b> Specific crime types within each main category.</li>
+                <li><b>Subcategories:</b> Further granularity based on categories.</li>
+            </ul>
+            To establish relationships, we use:
+            <ul>
+                <li><b>Main Category to Category Mapping:</b> Maps each `main_category` to corresponding `category` values.</li>
+                <li><b>Category to Subcategory Mapping:</b> Maps each `category` to its `sub_category` values.</li>
+            </ul>
+        </li>
+
+        <li><span class="section-title">Models:</span> A series of machine learning models tailored for different levels of classification granularity:
+            <ul>
+                <li><b>Model 1:</b> Classifies data into one of three `main_category` values:
+                    <ul>
+                        <li>"Women/Child Related Crime"</li>
+                        <li>"Financial Fraud Crimes"</li>
+                        <li>"Other Cyber Crime"</li>
+                    </ul>
+                </li>
+                <li><b>Model 2:</b> Classifies data into categories under "Women/Child Related Crime," such as:
+                    <ul>
+                        <li>"Child Pornography/CSAM"</li>
+                        <li>"Crime Against Women & Children"</li>
+                        <li>"Online Cyber Trafficking"</li>
+                        <li>"Sexually Obscene Material"</li>
+                    </ul>
+                </li>
+                <li><b>Model 3:</b> Classifies categories under "Financial Fraud Crimes," such as:
+                    <ul>
+                        <li>"Cryptocurrency Crime"</li>
+                        <li>"Online Financial Fraud"</li>
+                        <li>"Online Gambling/Betting"</li>
+                    </ul>
+                </li>
+                <li><b>Model 4:</b> Classifies categories under "Other Cyber Crime," including:
+                    <ul>
+                        <li>"Hacking/Damage to Computer Systems"</li>
+                        <li>"Cyber Terrorism"</li>
+                        <li>"Online and Social Media Related Crime"</li>
+                    </ul>
+                </li>
+                <!-- Add similar blocks for Models 5–10 -->
+            </ul>
+        </li>
+
+        <li><span class="section-title">Architecture:</span> The models use advanced architectures such as CNNs, RNNs, or Transformers, depending on the classification task.</li>
     </ul>
     """, unsafe_allow_html=True)
 
