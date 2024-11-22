@@ -276,17 +276,26 @@ elif page == "Documentation":
         <title>Flowchart Viewer</title>
         <script src="https://cdn.jsdelivr.net/npm/panzoom@9.4.0/dist/panzoom.min.js"></script>
         <style>
+            body {{
+                margin: 0;
+                background-color: #121212;  /* Dark background */
+                color: #ffffff;  /* Light text color */
+            }}
             #svg-container {{
                 width: 100%;
                 height: 600px;
                 overflow: hidden;
-                border: 1px solid #ccc;
+                border: 1px solid #444; /* Subtle border for visibility */
                 position: relative;
+                background-color: #121212; /* Matches app's dark background */
             }}
             #svg-content {{
                 width: 100%;
                 height: 100%;
                 cursor: grab;
+            }}
+            svg {{
+                filter: invert(1) hue-rotate(180deg); /* Invert colors for better contrast */
             }}
         </style>
     </head>
