@@ -290,6 +290,7 @@ elif page == "Documentation":
                 <li><b>Category to Subcategory Mapping:</b> Maps each `category` to its `sub_category` values.</li>
             </ul>
         </li>
+
         <li><span class="section-title">Models:</span> A series of machine learning models tailored for different levels of classification granularity:
             <ul>
                 <li><b>Model 1:</b> Classifies data into one of three `main_category` values:
@@ -305,6 +306,8 @@ elif page == "Documentation":
                         <li>"Crime Against Women & Children"</li>
                         <li>"Online Cyber Trafficking"</li>
                         <li>"Sexually Obscene Material"</li>
+                        <li>"Rape/Gang Rape"</li>
+                        <li>"Sexually Abusive Content"</li>
                     </ul>
                 </li>
                 <li><b>Model 3:</b> Classifies categories under "Financial Fraud Crimes," such as:
@@ -316,14 +319,76 @@ elif page == "Documentation":
                 </li>
                 <li><b>Model 4:</b> Classifies categories under "Other Cyber Crime," including:
                     <ul>
-                        <li>"Hacking/Damage to Computer Systems"</li>
+                        <li>"Any Other Cyber Crime"</li>
+                        <li>"Cyber Attack/Dependent Crimes"</li>
                         <li>"Cyber Terrorism"</li>
+                        <li>"Hacking/Damage to Computer Systems"</li>
                         <li>"Online and Social Media Related Crime"</li>
+                        <li>"Ransomware"</li>
+                        <li>"Report Unlawful Content"</li>
                     </ul>
                 </li>
-                <!-- Add similar blocks for Models 5–10 -->
+                <li><b>Model 5:</b> Classifies subcategories under "Hacking/Damage to Computer Systems," such as:
+                    <ul>
+                        <li>"Unauthorized Access/Data Breach"</li>
+                        <li>"Email Hacking"</li>
+                        <li>"Tampering with Computer Source Documents"</li>
+                        <li>"Website Defacement/Hacking"</li>
+                        <li>"Damage to Computer Systems"</li>
+                    </ul>
+                </li>
+                <li><b>Model 6:</b> Classifies subcategories under "Online Financial Fraud," such as:
+                    <ul>
+                        <li>"Demat/Depository Fraud"</li>
+                        <li>"Fraud Call/Vishing"</li>
+                        <li>"Internet Banking Related Fraud"</li>
+                        <li>"Business Email Compromise/Email Takeover"</li>
+                        <li>"UPI Related Frauds"</li>
+                        <li>"Debit/Credit Card Fraud/SIM Swap Fraud"</li>
+                        <li>"E-Wallet Related Fraud"</li>
+                    </ul>
+                </li>
+                <li><b>Model 7:</b> Classifies subcategories under "Any Other Cyber Crime," such as:
+                    <ul>
+                        <li>"Identity Theft, Spoofing, and Phishing Attacks"</li>
+                        <li>"Zero-Day Exploits"</li>
+                        <li>"Attacks on Servers and Networks"</li>
+                        <li>"Web Application Vulnerabilities"</li>
+                        <li>"Attacks on Critical Infrastructure"</li>
+                        <li>"Disinformation or Misinformation Campaigns"</li>
+                    </ul>
+                </li>
+                <li><b>Model 8:</b> Classifies subcategories under "Crime Against Women & Children," such as:
+                    <ul>
+                        <li>"Sexual Harassment"</li>
+                        <li>"Computer Generated CSAM/CSEM"</li>
+                        <li>"Cyber Blackmailing & Threatening"</li>
+                    </ul>
+                </li>
+                <li><b>Model 9:</b> Classifies subcategories under "Cyber Attack/Dependent Crimes," such as:
+                    <ul>
+                        <li>"Hacking/Defacement"</li>
+                        <li>"SQL Injection"</li>
+                        <li>"Malware Attack"</li>
+                        <li>"Denial of Service (DoS)/DDoS Attacks"</li>
+                        <li>"Ransomware Attack"</li>
+                        <li>"Data Breach/Theft"</li>
+                    </ul>
+                </li>
+                <li><b>Model 10:</b> Classifies subcategories under "Online and Social Media Related Crime," such as:
+                    <ul>
+                        <li>"Cyber Bullying, Stalking, Sexting"</li>
+                        <li>"Impersonating Email"</li>
+                        <li>"Profile Hacking/Identity Theft"</li>
+                        <li>"Online Job Fraud"</li>
+                        <li>"Provocative Speech for Unlawful Acts"</li>
+                        <li>"Fake/Impersonating Profile"</li>
+                        <li>"Online Matrimonial Fraud"</li>
+                    </ul>
+                </li>
             </ul>
         </li>
+
         <li><span class="section-title">Architecture:</span> The models use advanced architectures such as CNNs, RNNs, or Transformers, depending on the classification task.</li>
     </ul>
     """, unsafe_allow_html=True)
