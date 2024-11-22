@@ -157,7 +157,7 @@ if page == "Model Predictions":
             st.write("Prediction Results CSV looks like this")
             st.write(data.head(2))
 
-            if 'ground_truth' in dataframe.columns:
+            if 'ground_truth' in data.columns:
                 logger.info('Ground truth provided')
                 accuracy=accuracy_check(predictions,list(dataframe['ground_truth']))
                 st.write(f"Model Accuracy on given CSV is : {accuracy}%")
@@ -265,7 +265,7 @@ elif page == "Documentation":
     st.image(svg_content, use_column_width=True)
     # Load and display the SVG
     st.subheader("Re-imagining the clusters")
-    with open("ui_images/ai_hack_flowsvg_01.svg", "r") as svg_file:
+    with open("ui_images/ai_hack_flowsvg_04.svg", "r") as svg_file:
         svg_content = svg_file.read()
     st.image(svg_content, use_column_width=True)
 
