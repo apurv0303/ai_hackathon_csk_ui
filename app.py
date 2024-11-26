@@ -640,7 +640,7 @@ elif page == "About CloudSEK":
     # About Team Section
     st.header("About Our Team")
     st.markdown("""
-    - **Lasya Ippagunta**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Lasya Ippagunta**: [LinkedIn Profile](https://www.linkedin.com/in/lasya-ippagunta)
     - **Apurv Singh**: [LinkedIn Profile](https://www.linkedin.com/in/apurvsj/)
     - **Shubham Luharuka**: [LinkedIn Profile](https://www.linkedin.com/in/shubhamluharuka/)
     - **Sravanthi P**: [LinkedIn Profile](https://www.linkedin.com/in/p-l-sravanthi-b23360217/)
