@@ -105,7 +105,7 @@ if page == "Model Predictions":
                 prediction = return_output_for_text(input_text)
             except Exception as e:
                 logger.error(f"Error in real-time prediction: {e}")
-                prediction = {'pred_category_names': 'Other', 'pred_retagged_category': 'Other', 'pred_retagged_sub_category': 'Other', 'pred_sub_category_names': 'Other'}
+                prediction = {'Server Load Issue':'503','pred_category_names': 'Other', 'pred_retagged_category': 'Other', 'pred_retagged_sub_category': 'Other', 'pred_sub_category_names': 'Other'}
             st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         else:
             st.warning("Please enter some input data.")
