@@ -460,11 +460,13 @@ def predict_single(text: str, encoder, models: Dict, selectors: Dict,
         text_embedding = encoder.encode([processed_text], show_progress_bar=False)
         text_embedding = text_embedding.reshape(1, -1)
         
+        print(f"text_embedding: Completed")
         # Predict main category
         main_features = selectors['category_names'].transform(text_embedding)
         main_cat_pred = models['category_names'].predict(main_features)
         category_names = label_encoders['category_names'].inverse_transform(main_cat_pred)[0]
         
+        print(f"category_names: Completed")
         # Predict category based on main category
         category_model_key = f'category_{category_names.replace(" ", "_").replace("/", "_").replace("&", "and")}'
         try:
@@ -586,7 +588,6 @@ def analyze_examples(results_df: pd.DataFrame, test_df: pd.DataFrame, n_examples
 # Example usage with your mapping
 master_mapper = clean_json_mapping(master_mapper)
 # Load models and vectorizer
-encoder, models, label_encoders, selectors = load_models(models_path='models_gdrive/models/')
 
 
 # '''
@@ -618,16 +619,20 @@ encoder, models, label_encoders, selectors = load_models(models_path='models_gdr
 '''
 FOR SINGLE TEXT STRING
 '''
-# start=time.time()
-# results_df = predict_single(
-#     text="hi i am a cyber crime, there is lot of problem in cyber crime in upi",
-#     encoder=encoder,
-#     models=models,
-#     selectors=selectors,
-#     label_encoders=label_encoders,
-#     category_to_sub_category=category_to_sub_category,
-#     master_mapper=master_mapper
-# )
-# print(f"Time taken for single text : {time.time()-start}")
+def return_output_for_text(input_text):
+    start=time.time()
+    encoder, models, label_encoders, selectors = load_models(models_path='models_gdrive/models/')
+    results_df = predict_single(
+        text=input_text,
+        encoder=encoder,
+        models=models,
+        selectors=selectors,
+        label_encoders=label_encoders,
+        category_to_sub_category=category_to_sub_category,
+        master_mapper=master_mapper
+    )
+    print(f"Time taken for single text : {time.time()-start}")
+    return results_df
 
-# print(results_df)
+
+print(return_output_for_text('hi i am calling from upi customer care'))

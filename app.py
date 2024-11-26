@@ -7,7 +7,7 @@ from loguru import logger
 from ui_scripts.process import process_text
 from ui_scripts.validate_csv import validate_input_csv
 # from inference import evaluate_predictions
-from inference import load_models,predict_single,run_inference_pipeline
+from inference import return_output_for_text
 from config import category_names_to_category, category_to_sub_category,master_mapper
 
 # Configure Loguru logger
@@ -20,7 +20,6 @@ st.sidebar.title("Jump to Section")
 page = st.sidebar.radio("Go to", ["Model Predictions", "Documentation","About CloudSEK"])
 
 if page == "Model Predictions":
-    encoder, models, label_encoders, selectors = load_models(models_path='models_gdrive/models/')
     st.markdown(
         """
         <style>
@@ -102,13 +101,11 @@ if page == "Model Predictions":
         if input_text:
             input_text=process_text(input_text)
             # Add model prediction logic for real-time inputs
-            prediction = predict_single(text="this is upi",
-                                        encoder=encoder,
-                                        models=models,
-                                          selectors=selectors,
-                                            label_encoders=label_encoders,
-                                            category_to_sub_category=category_to_sub_category,
-                                           master_mapper=master_mapper)
+            try:
+                prediction = return_output_for_text(input_text)
+            except Exception as e:
+                logger.error(f"Error in real-time prediction: {e}")
+                prediction = {'pred_category_names': 'Other', 'pred_retagged_category': 'Other', 'pred_retagged_sub_category': 'Other', 'pred_sub_category_names': 'Other'}
             st.markdown(f"<div class='prediction-box'>Prediction: {prediction}</div>", unsafe_allow_html=True)
         else:
             st.warning("Please enter some input data.")
@@ -146,14 +143,19 @@ if page == "Model Predictions":
 
         if st.button("Process CSV", key="process-csv", help="Click to process the uploaded CSV for predictions"):
             # Check if the selected column exists in the uploaded CSV
-            predictions = run_inference_pipeline(test_df=data,
-                                                 encoder=encoder,
-                                                models=models,
-                                                    selectors=selectors,
-                                                    label_encoders=label_encoders,
-                                                    category_to_sub_category=category_to_sub_category,
-                                                    master_mapper=master_mapper,
-                                                    batch_size=64)
+            try:
+                # predictions = run_inference_pipeline(test_df=data,
+                #                                     encoder=encoder,
+                #                                     models=models,
+                #                                         selectors=selectors,
+                #                                         label_encoders=label_encoders,
+                #                                         category_to_sub_category=category_to_sub_category,
+                #                                         master_mapper=master_mapper,
+                #                                         batch_size=64)
+                prediction=pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
+            except Exception as e:
+                logger.error(f"Error in inference pipeline: {e}")
+                predictions = pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
             data['Prediction'] = predictions
             st.write("Prediction Results CSV looks like this")
             st.write(data.head(2))
@@ -395,12 +397,12 @@ elif page == "Documentation":
     st.subheader("Categories Classifiers")
     with open("ui_images/ai_hack_flowsvg_02.svg", "r") as svg_file:
         svg_content = svg_file.read()
-    st.image(svg_content, use_column_width=True)
+    st.image(svg_content, use_container_width=True)
     # Load and display the SVG
     st.subheader("Re-imagining the clusters")
     with open("ui_images/ai_hack_flowsvg_04.svg", "r") as svg_file:
         svg_content = svg_file.read()
-    st.image(svg_content, use_column_width=True)
+    st.image(svg_content, use_container_width=True)
 
     # New Section: Deployment and Scaling
     st.header("Deployment and Scaling")
@@ -440,7 +442,7 @@ elif page == "Documentation":
 
     # Display Flowchart
     flowchart_path = "ui_images/deployment_fw_01.png"  # Update with the actual path to your flowchart
-    st.image(flowchart_path, caption="Flowchart: Resource Allocation in Kubernetes", use_column_width=True)
+    st.image(flowchart_path, caption="Flowchart: Resource Allocation in Kubernetes", use_container_width=True)
 
     # Dockerfile and Kubernetes Deployment YAML Details
     st.markdown("""
@@ -576,9 +578,9 @@ elif page == "Documentation":
     )
     # Add images and text
     image1 = Image.open("ui_images/gnn_fw_2.png")
-    st.image(image1, caption="Model Architecture", use_column_width=True)
+    st.image(image1, caption="Model Architecture", use_container_width=True)
     image2 = Image.open("ui_images/gnn_fw_1.png")
-    st.image(image2, caption="Model inference", use_column_width=True)
+    st.image(image2, caption="Model inference", use_container_width=True)
 
     st.markdown("""
         <p class="content-text">These visualizations help provide a clearer understanding of the model's design and performance.</p>
@@ -634,7 +636,7 @@ elif page == "About CloudSEK":
     # About Team Section
     st.header("About Our Team")
     st.markdown("""
-    - **Lasya Ippagunta**: [LinkedIn Profile](www.linkedin.com/in/lasya-ippagunta)
+    - **Lasya Ippagunta**: [LinkedIn Profile](https://www.linkedin.com)
     - **Apurv Singh**: [LinkedIn Profile](https://www.linkedin.com/in/apurvsj/)
     - **Shubham Luharuka**: [LinkedIn Profile](https://www.linkedin.com/in/shubhamluharuka/)
     - **Sravanthi P**: [LinkedIn Profile](https://www.linkedin.com/in/p-l-sravanthi-b23360217/)
