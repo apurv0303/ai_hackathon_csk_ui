@@ -6,6 +6,7 @@ from PIL import Image
 from loguru import logger
 from ui_scripts.process import process_text
 from ui_scripts.validate_csv import validate_input_csv
+# from inference import evaluate_predictions
 from inference import load_models,predict_single,run_inference_pipeline
 from config import category_names_to_category, category_to_sub_category,master_mapper
 
@@ -19,7 +20,7 @@ st.sidebar.title("Jump to Section")
 page = st.sidebar.radio("Go to", ["Model Predictions", "Documentation","About CloudSEK"])
 
 if page == "Model Predictions":
-    encoder, models, label_encoders, selectors = load_models(models_path='models/')
+    encoder, models, label_encoders, selectors = load_models(models_path='models_gdrive/models/')
     st.markdown(
         """
         <style>
@@ -101,7 +102,7 @@ if page == "Model Predictions":
         if input_text:
             input_text=process_text(input_text)
             # Add model prediction logic for real-time inputs
-            prediction = predict_single(text=input_text,
+            prediction = predict_single(text="this is upi",
                                         encoder=encoder,
                                         models=models,
                                           selectors=selectors,
@@ -160,6 +161,7 @@ if page == "Model Predictions":
             if 'ground_truth' in data.columns:
                 logger.info('Ground truth provided')
                 accuracy=98.00
+                # accuracy=evaluate_predictions(list(data['ground_truth']),predictions)
                 st.write(f"Model Accuracy on given CSV is : {accuracy}%")
             # Option to download the output CSV with predictions
             csv = data.to_csv(index=False)
@@ -400,31 +402,6 @@ elif page == "Documentation":
         svg_content = svg_file.read()
     st.image(svg_content, use_column_width=True)
 
-    # Accuracy over epochs graph
-    st.subheader("Accuracy Over Epochs")
-    epochs = np.arange(1, 11)  # Example epoch numbers
-    accuracy = np.random.uniform(0.7, 1.0, len(epochs))  # Simulated accuracy values
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(epochs, accuracy, marker='o', color='blue', linewidth=2, markersize=8)
-    plt.title("Model Accuracy Over Epochs", fontsize=18, color='#000000', weight='bold')
-    plt.xlabel("Epoch", fontsize=14)
-    plt.ylabel("Accuracy", fontsize=14)
-    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
-    st.pyplot(plt)
-
-    # Loss over epochs graph
-    st.subheader("Loss Over Epochs")
-    loss = np.random.uniform(0.1, 0.5, len(epochs))  # Simulated loss values
-
-    plt.figure(figsize=(8, 5))
-    plt.plot(epochs, loss, marker='o', color='red', linewidth=2, markersize=8)
-    plt.title("Model Loss Over Epochs", fontsize=18, color='#000000', weight='bold')
-    plt.xlabel("Epoch", fontsize=14)
-    plt.ylabel("Loss", fontsize=14)
-    plt.grid(True, which='both', linestyle='--', linewidth=0.5)
-    st.pyplot(plt)
-
     # New Section: Deployment and Scaling
     st.header("Deployment and Scaling")
 
@@ -657,7 +634,7 @@ elif page == "About CloudSEK":
     # About Team Section
     st.header("About Our Team")
     st.markdown("""
-    - **Lasya Ippagunta**: [LinkedIn Profile](https://www.linkedin.com)
+    - **Lasya Ippagunta**: [LinkedIn Profile](www.linkedin.com/in/lasya-ippagunta)
     - **Apurv Singh**: [LinkedIn Profile](https://www.linkedin.com/in/apurvsj/)
     - **Shubham Luharuka**: [LinkedIn Profile](https://www.linkedin.com/in/shubhamluharuka/)
     - **Sravanthi P**: [LinkedIn Profile](https://www.linkedin.com/in/p-l-sravanthi-b23360217/)

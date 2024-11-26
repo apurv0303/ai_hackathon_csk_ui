@@ -589,31 +589,31 @@ master_mapper = clean_json_mapping(master_mapper)
 encoder, models, label_encoders, selectors = load_models(models_path='models_gdrive/models/')
 
 
-'''
-TO PUT CSV
-'''
-# Put CSV path here to predict on complete csv
-PATH_CSV="data/test.csv"
-print("Loading test data...")
-test_df = pd.read_csv('data/test.csv')
-# test_df=test_df.head(100)
-test_df = test_df.dropna(subset=['crimeaditionalinfo', 'category'], how='all')
-test_df['sub_category'] = test_df['sub_category'].fillna(test_df['category'])
-# Clean up the text data
-test_df['content_processed'] = test_df['crimeaditionalinfo'].fillna('')
-test_df['content_processed'] = test_df['content_processed'].astype(str)
+# '''
+# TO PUT CSV
+# '''
+# # Put CSV path here to predict on complete csv
+# PATH_CSV="data/test.csv"
+# print("Loading test data...")
+# test_df = pd.read_csv('data/test.csv')
+# # test_df=test_df.head(100)
+# test_df = test_df.dropna(subset=['crimeaditionalinfo', 'category'], how='all')
+# test_df['sub_category'] = test_df['sub_category'].fillna(test_df['category'])
+# # Clean up the text data
+# test_df['content_processed'] = test_df['crimeaditionalinfo'].fillna('')
+# test_df['content_processed'] = test_df['content_processed'].astype(str)
 
-results_df = run_inference_pipeline(
-    test_df=test_df,
-    encoder=encoder,
-    models=models,
-    selectors=selectors,
-    label_encoders=label_encoders,
-    category_to_sub_category=category_to_sub_category,
-    master_mapper=master_mapper,
-    batch_size=64
-)
-save_detailed_results(results_df, test_df)
+# results_df = run_inference_pipeline(
+#     test_df=test_df,
+#     encoder=encoder,
+#     models=models,
+#     selectors=selectors,
+#     label_encoders=label_encoders,
+#     category_to_sub_category=category_to_sub_category,
+#     master_mapper=master_mapper,
+#     batch_size=64
+# )
+# save_detailed_results(results_df, test_df)
 
 '''
 FOR SINGLE TEXT STRING
