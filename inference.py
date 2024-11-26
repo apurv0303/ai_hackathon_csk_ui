@@ -13,8 +13,8 @@ from GdriveModels import download_google_drive_folder
 from config import category_names_to_category, category_to_sub_category,master_mapper
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
-if not os.path.exists('models_gdrive'):
-    download_google_drive_folder()
+# if not os.path.exists('models_gdrive'):
+#     download_google_drive_folder()
 
 class CyberCrimeDataset(Dataset):
     """Dataset class for cyber crime text classification"""

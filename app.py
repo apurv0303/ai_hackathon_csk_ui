@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -5,6 +6,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 from loguru import logger
 from ui_scripts.process import process_text
+from GdriveModels import download_google_drive_folder
 from ui_scripts.validate_csv import validate_input_csv
 # from inference import evaluate_predictions
 from inference import return_output_for_text
@@ -102,6 +104,8 @@ if page == "Model Predictions":
             input_text=process_text(input_text)
             # Add model prediction logic for real-time inputs
             try:
+                if not os.path.exists('models_gdrive'):
+                    download_google_drive_folder()
                 prediction = return_output_for_text(input_text)
             except Exception as e:
                 logger.error(f"Error in real-time prediction: {e}")
