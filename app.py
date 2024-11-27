@@ -115,70 +115,70 @@ if page == "Model Predictions":
             st.warning("Please enter some input data.")
 
     # CSV file input for batch processing
-    st.header("Batch Prediction from CSV")
+    # st.header("Batch Prediction from CSV")
 
-    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"], key="batch-upload")
-    logger.info(f"{uploaded_file}")
-    if uploaded_file:
-        # Read the uploaded CSV
-        data = pd.read_csv(uploaded_file)
+    # uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"], key="batch-upload")
+    # logger.info(f"{uploaded_file}")
+    # if uploaded_file:
+    #     # Read the uploaded CSV
+    #     data = pd.read_csv(uploaded_file)
 
-        # Validate CSV input
-        if not validate_input_csv(data):
-            st.error("Invalid input CSV. Please check the format and content.")
+    #     # Validate CSV input
+    #     if not validate_input_csv(data):
+    #         st.error("Invalid input CSV. Please check the format and content.")
         
-        # Display the uploaded data
-        st.write("Uploaded Data:")
-        st.write(data.head(3))
+    #     # Display the uploaded data
+    #     st.write("Uploaded Data:")
+    #     st.write(data.head(3))
 
-        # Dropdown to show the required columns for CSV
-        required_columns = ['id','content_processed','ground_truth [Optional for accuracy]']  # List required columns
-        st.subheader("Required Columns in CSV:")
-        st.markdown(f"<span class='subheader-text'>The uploaded CSV should contain the following columns:</span>", unsafe_allow_html=True)
-        st.write(required_columns)
+    #     # Dropdown to show the required columns for CSV
+    #     required_columns = ['id','content_processed','ground_truth [Optional for accuracy]']  # List required columns
+    #     st.subheader("Required Columns in CSV:")
+    #     st.markdown(f"<span class='subheader-text'>The uploaded CSV should contain the following columns:</span>", unsafe_allow_html=True)
+    #     st.write(required_columns)
 
-        # # Dropdown for users to select columns from the uploaded CSV
-        # selected_column = st.selectbox("Select the input column from the uploaded CSV", options=data.columns.tolist())
-        # st.write(f"Selected Column: {selected_column}")
+    #     # # Dropdown for users to select columns from the uploaded CSV
+    #     # selected_column = st.selectbox("Select the input column from the uploaded CSV", options=data.columns.tolist())
+    #     # st.write(f"Selected Column: {selected_column}")
 
-        # Dropdown to choose between models
-        selected_model = st.selectbox("Choose the model", ["Model 1", "Model 2"], key="model-selection")
+    #     # Dropdown to choose between models
+    #     selected_model = st.selectbox("Choose the model", ["Model 1", "Model 2"], key="model-selection")
         
 
-        if st.button("Process CSV", key="process-csv", help="Click to process the uploaded CSV for predictions"):
-            # Check if the selected column exists in the uploaded CSV
-            try:
-                # predictions = run_inference_pipeline(test_df=data,
-                #                                     encoder=encoder,
-                #                                     models=models,
-                #                                         selectors=selectors,
-                #                                         label_encoders=label_encoders,
-                #                                         category_to_sub_category=category_to_sub_category,
-                #                                         master_mapper=master_mapper,
-                #                                         batch_size=64)
-                prediction=pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
-            except Exception as e:
-                logger.error(f"Error in inference pipeline: {e}")
-                predictions = pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
-            data['Prediction'] = predictions
-            st.write("Prediction Results CSV looks like this")
-            st.write(data.head(2))
+    #     if st.button("Process CSV", key="process-csv", help="Click to process the uploaded CSV for predictions"):
+    #         # Check if the selected column exists in the uploaded CSV
+    #         try:
+    #             # predictions = run_inference_pipeline(test_df=data,
+    #             #                                     encoder=encoder,
+    #             #                                     models=models,
+    #             #                                         selectors=selectors,
+    #             #                                         label_encoders=label_encoders,
+    #             #                                         category_to_sub_category=category_to_sub_category,
+    #             #                                         master_mapper=master_mapper,
+    #             #                                         batch_size=64)
+    #             prediction=pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
+    #         except Exception as e:
+    #             logger.error(f"Error in inference pipeline: {e}")
+    #             predictions = pd.DataFrame({'Prediction': ['Server is switched off due to inactivity, please try scripting or after some time']})
+    #         data['Prediction'] = predictions
+    #         st.write("Prediction Results CSV looks like this")
+    #         st.write(data.head(2))
 
-            if 'ground_truth' in data.columns:
-                logger.info('Ground truth provided')
-                accuracy=98.00
-                # accuracy=evaluate_predictions(list(data['ground_truth']),predictions)
-                st.write(f"Model Accuracy on given CSV is : {accuracy}%")
-            # Option to download the output CSV with predictions
-            csv = data.to_csv(index=False)
-            st.download_button(
-                label="Download Predictions",
-                data=csv,
-                file_name="predictions.csv",
-                mime="text/csv",
-                key="download-btn",
-                help="Click to download the CSV file with predictions"
-            )
+    #         if 'ground_truth' in data.columns:
+    #             logger.info('Ground truth provided')
+    #             accuracy=98.00
+    #             # accuracy=evaluate_predictions(list(data['ground_truth']),predictions)
+    #             st.write(f"Model Accuracy on given CSV is : {accuracy}%")
+    #         # Option to download the output CSV with predictions
+    #         csv = data.to_csv(index=False)
+    #         st.download_button(
+    #             label="Download Predictions",
+    #             data=csv,
+    #             file_name="predictions.csv",
+    #             mime="text/csv",
+    #             key="download-btn",
+    #             help="Click to download the CSV file with predictions"
+    #         )
 
 elif page == "Documentation":
     st.markdown(
